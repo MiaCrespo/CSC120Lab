@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+//=================================================================================================
+public class UseKindle {
+//-------------------------------------------------------------------------------------------------
+    private static final Scanner keyboard = new Scanner(System.in);
+//-------------------------------------------------------------------------------------------------
+    public static void main(String[] args) {
+
+        Kindle aBook; // Create a Kindle object
+        int numberOfPages;
+
+        //----Get book information
+        System.out.print("How many pages in the book : ");
+        numberOfPages = keyboard.nextInt();
+
+        //----Create object
+        aBook = new Kindle(numberOfPages);
+        System.out.print("Initially                  : ");
+        System.out.println(aBook);
+
+        //----Do some reading
+        aBook.turnPages(); // Turn 1 page
+        aBook.turnPages(); // Turn 1 page
+        aBook.turnPages(); // Turn 1 page
+        aBook.turnPages(); // Turn 1 page
+        System.out.print("A bit later                : ");
+        System.out.println(aBook);
+
+        //----Skip ahead
+        aBook.turnPages(27);
+        System.out.print("After skipping 27 pages    : ");
+        System.out.println(aBook);
+
+        //----Try to skip past the end of the book
+        aBook.turnPages(8);
+    }
+//-------------------------------------------------------------------------------------------------
+}
+//=================================================================================================

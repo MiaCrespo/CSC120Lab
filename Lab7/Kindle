@@ -1,0 +1,35 @@
+public class Kindle {
+    private int totalPages;    // Total number of pages in the book
+    private int currentPage;   // Current page the reader is on
+
+    // Constructor that initializes the total pages and sets the current page to 1
+    public Kindle(int totalPages) {
+        this.totalPages = totalPages;
+        this.currentPage = 1; // Start at the first page
+    }
+
+    // Method to increment current page by 1
+    public void turnPages() {
+        if (currentPage < totalPages) {
+            currentPage++;
+        }
+    }
+
+    // Overloaded method to turn pages by a specified amount
+    public void turnPages(int pagesToTurn) {
+        if (currentPage + pagesToTurn > totalPages) {
+            System.out.printf("You were on                : %s\n", this);
+            System.out.printf("Turning %d pages would take you past the last page.\n", pagesToTurn);
+            currentPage = totalPages; // Set to the last page if it exceeds
+        } else {
+            currentPage += pagesToTurn;
+        }
+        System.out.printf("You are now on             : %s\n", this);
+    }
+
+    // toString method for outputting the current page and total pages
+    @Override
+    public String toString() {
+        return String.format("Page %3d of %3d.", currentPage, totalPages);
+    }
+}
