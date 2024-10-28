@@ -1,54 +1,53 @@
-import java.util.ArrayList;
-
 public class Family {
-    //instance variables
-    private ArrayList<Person> members; //lists to store fam members
-    private static final int MAX_MEMBERS = 10; //max members is 10
+    private Person[] members;         //object array
+    private int numberOfPeople;       //number of people in the family
+    private static final int MAX_MEMBERS = 10; //max number of family members = 10
 
     //constructor
     public Family() {
-        members = new ArrayList<>();
-    }
-
-    //method to display the family info
-    public void display() {
-        for (Person member : members) {
-            System.out.println(member);
-        }
+        members = new Person[MAX_MEMBERS]; // initializes it
+        numberOfPeople = 0;
     }
 
     //method to add a person to the family
-    //gets age and name
     public boolean addPerson(String name, int age) {
-        if (members.size() < MAX_MEMBERS) {
-            members.add(new Person(name, age));
+        if (numberOfPeople < MAX_MEMBERS) {
+            members[numberOfPeople] = new Person(name, age); //adds a new person
+            numberOfPeople++;                                //increments the count
             return true;
         } else {
-            return false; //no more space in the family
+            return false; //can't add more people/fam members to the array
         }
     }
 
     //method for birthday
     public void birthday(String name) {
-        for (Person member : members) {
-            if (member.getName().equalsIgnoreCase(name)) {
-                member.incrementAge();
-                break;
+        for (int i = 0; i < numberOfPeople; i++) {
+            if (members[i].getName().equalsIgnoreCase(name)) {
+                members[i].incrementAge(); // Increments age for the specified person
+                break;                     // Stop after finding the person
             }
         }
     }
 
-    //method to return the number of people
+    //method to return the number of people in the family
     public int getNumberOfPeople() {
-        return members.size();
+        return numberOfPeople; //returns the current number of family members
     }
 
-    //method to return the total age of the people
+    //method to return the total age of all family members
     public int getTotalAge() {
         int totalAge = 0;
-        for (Person member : members) {
-            totalAge += member.getAge();
+        for (int i = 0; i < numberOfPeople; i++) {
+            totalAge += members[i].getAge(); //adds up ages
         }
-        return totalAge;
+        return totalAge; //returns total age
+    }
+
+    //display family info
+    public void display() {
+        for (int i = 0; i < numberOfPeople; i++) {
+            System.out.println(members[i]);
+        }
     }
 }
