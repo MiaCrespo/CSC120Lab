@@ -1,33 +1,34 @@
 import java.util.ArrayList;
 
 public class Family {
-    // Instance variables
-    private ArrayList<Person> members;
-    private static final int MAX_MEMBERS = 10;
+    //instance variables
+    private ArrayList<Person> members; //lists to store fam members
+    private static final int MAX_MEMBERS = 10; //max members is 10
 
-    // Default constructor
+    //constructor
     public Family() {
         members = new ArrayList<>();
     }
 
-    // Method to display the family information
+    //method to display the family info
     public void display() {
         for (Person member : members) {
             System.out.println(member);
         }
     }
 
-    // Method to add a person to the family (taking name and age as parameters)
+    //method to add a person to the family
+    //gets age and name
     public boolean addPerson(String name, int age) {
         if (members.size() < MAX_MEMBERS) {
             members.add(new Person(name, age));
             return true;
         } else {
-            return false; // No more space in the family
+            return false; //no more space in the family
         }
     }
 
-    // Method to handle a birthday
+    //method for birthday
     public void birthday(String name) {
         for (Person member : members) {
             if (member.getName().equalsIgnoreCase(name)) {
@@ -37,12 +38,12 @@ public class Family {
         }
     }
 
-    // Accessor method to return the number of people
+    //method to return the number of people
     public int getNumberOfPeople() {
         return members.size();
     }
 
-    // Accessor method to return the total age of the people
+    //method to return the total age of the people
     public int getTotalAge() {
         int totalAge = 0;
         for (Person member : members) {
